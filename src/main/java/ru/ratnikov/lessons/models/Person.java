@@ -10,8 +10,8 @@ public class Person {
 
     @NotEmpty(message = "Name should not be empty")
     @Size(min = 5, max = 100, message = "Full name must be between 5 and 100 characters")
-    @Pattern(regexp = "[A-zА-я]+ [A-zА-я]+ [A-zА-я]+",
-            message = "Full name should consist of first name, last name and patronym, like that: Francis Albert Scott")
+    @Pattern(regexp = "[A-zА-я]+ [A-zА-я]+",
+            message = "Full name should consist of first name and last name, like that: Albert Scott")
     private String name;
 
     @Min(value = 1922, message = "Year of birth must be greater than 1922. Is the person really a hundred years old?")
