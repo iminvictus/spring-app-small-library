@@ -9,68 +9,43 @@ public class Person {
     private int id;
 
     @NotEmpty(message = "Name should not be empty")
-    @Size(min = 2, max = 30, message = "Name length should be between 2 to 30 characters")
+    @Size(min = 5, max = 100, message = "Full name must be between 5 and 100 characters")
+    @Pattern(regexp = "[A-zА-я]+ [A-zА-я]+ [A-zА-я]+",
+            message = "Full name should consist of first name, last name and patronym, like that: Francis Albert Scott")
     private String name;
 
-    @Min(value = 1, message = "Age should be greater than zero")
-    private int age;
+    @Min(value = 1922, message = "Year of birth must be greater than 1922. Is the person really a hundred years old?")
+    private int birth;
 
-    @NotEmpty(message = "Email should not be empty")
-    @Email(message = "Email should be valid")
-    private String email;
-
-    //Country, City, Zip code (6 digit)
-    @Pattern(regexp = "[A-Z]\\w+, [A-Z]\\w+, \\d{6}",
-            message = "Address should be in this format: Country, City, Zip Code (6 digits)")
-    private String address;
-
+    //Default constructor for Spring
     public Person() { }
 
-    public Person(int id, String name, int age, String email, String address) {
-        this.id = id;
+    public Person(String name, int birth) {
         this.name = name;
-        this.age = age;
-        this.email = email;
-        this.address = address;
-    }
-
-    public int getId() {
-        return id;
+        this.birth = birth;
     }
 
     public String getName() {
         return name;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
-
     public void setName(String name) {
         this.name = name;
     }
 
-    public int getAge() {
-        return age;
+    public int getBirth() {
+        return birth;
     }
 
-    public void setAge(int age) {
-        this.age = age;
+    public void setBirth(int birth) {
+        this.birth = birth;
     }
 
-    public String getEmail() {
-        return email;
+    public int getId() {
+        return id;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
+    public void setId(int id) {
+        this.id = id;
     }
 }

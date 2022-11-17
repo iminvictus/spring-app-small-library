@@ -29,15 +29,14 @@ public class PeopleController {
 
     @GetMapping ()
     public String index(Model model) {
-        // get all people from DAO and deliver them to the VIEW
         model.addAttribute("people", personDAO.index());
         return "people/index";
     }
 
     @GetMapping("/{id}")
     public String show (@PathVariable("id") int id, Model model) {
-        //get one person from DAO by id and deliver one to the VIEW
         model.addAttribute("person", personDAO.show(id));
+        model.addAttribute("books", personDAO.getBooksOwnedByPersonId(id));
         return "people/show";
     }
 
@@ -70,7 +69,7 @@ public class PeopleController {
         personValidator.validate(person, bindingResult);
 
         personDAO.update(id, person);
-        return "redirect:/people";
+        return "redirect:/people/" + id;
     }
 
     @DeleteMapping("/{id}")
